@@ -22,6 +22,9 @@
     <module>
       microservice-gateway
     </module>
+    <module>
+      microservice-eureka
+    </module>
   </modules>
 
   <properties>
