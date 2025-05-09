@@ -28,6 +28,9 @@
     <module>
       microservice-config
     </module>
+    <module>
+      microservice-inventory
+    </module>
   </modules>
 
   <properties>
@@ -43,13 +46,6 @@
        <optional>true</optional>
      </dependency>
 
-     <!-- Comentar temporalmente la dependencia de JPA -->
-     <!--
-     <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-data-jpa</artifactId>
-     </dependency>
-     -->
 
   </dependencies>
   
