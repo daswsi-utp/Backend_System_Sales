@@ -3,12 +3,12 @@ server:
 
 spring:
   application:
-    name: micro-inventory
+    name: micro-sales
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/InventoryDB
-    username: postgres
-    password: root
+    username: italo
+    password: kenyiaqp10
   jpa:
     hibernate:
       ddl-auto: create
