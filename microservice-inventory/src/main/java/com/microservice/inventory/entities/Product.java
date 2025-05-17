@@ -20,16 +20,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
 
-    @Column(table = "nombre", nullable = false )
+    @Column(name = "nombre", nullable = false )
     private String nameProduct;
 
-    @Column(table = "descripcion")
+    @Column(name = "descripcion")
     private String descriptionProduct;
 
-    @Column(table = "precio")
+    @Column(name = "precio")
     private Double priceProduct;
 
-    @Column(table = "cantidad")
+    @Column(name = "cantidad")
     private Integer quantityProduct;
 
     @ManyToOne
