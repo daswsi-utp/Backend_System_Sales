@@ -2,6 +2,7 @@ package com.controller;
 
 import com.entities.Sales;
 import com.service.Interface_SalesMS;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,12 @@ public class SalesController {
     @GetMapping("/search/{id}")
     public ResponseEntity<?> findById(@PathVariable String id){
         return ResponseEntity.ok(interfaceSalesMs.findByIdSales(id));
+    }
+
+    //TODO-Change later interfaceSaleMs to the actual service of product when implemented
+    @GetMapping("/searchProduct/{id}")
+    public ResponseEntity<?> findByProductId(@PathVariable String id){
+        return ResponseEntity.ok(interfaceSalesMs.findById(id));
     }
 }
 
