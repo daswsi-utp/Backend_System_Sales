@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InterfaceImpl_SalesMS implements Interface_SalesMS{
+public class ISalesServiceImpl implements ISaleService {
     @Autowired
     private SalesRepository salesRepository;
 

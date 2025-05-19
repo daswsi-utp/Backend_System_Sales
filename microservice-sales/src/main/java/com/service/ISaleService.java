@@ -4,7 +4,7 @@ import com.entities.Sales;
 
 import java.util.List;
 
-public interface Interface_SalesMS {
+public interface ISaleService {
     List<Sales> findAll();
     Sales findById(String id);
     void save(Sales sale);
