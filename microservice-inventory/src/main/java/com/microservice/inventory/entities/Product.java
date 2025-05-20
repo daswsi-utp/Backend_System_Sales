@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Product {
+public class    Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +33,10 @@ public class Product {
     private Integer quantityProduct;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "marca_id", referencedColumnName = "id", nullable = true)
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = true)
     private Category category;
 }

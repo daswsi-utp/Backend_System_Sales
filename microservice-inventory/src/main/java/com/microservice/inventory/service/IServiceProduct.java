@@ -5,7 +5,7 @@ import com.microservice.inventory.entities.Product;
 import java.util.List;
 import java.util.Optional;
 
-public interface InterfaceServiceProduct {
+public interface IServiceProduct {
 
     List<Product> getAllProducts();
     List<Product> searchProductByName(String name);
