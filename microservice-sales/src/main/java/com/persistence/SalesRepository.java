@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SalesRepository extends CrudRepository<Sales, String> {
+public interface SalesRepository extends CrudRepository<Sales, Long> {
 
-    List<Sales> findAllBySalesId(String id);
+    List<Sales> findAllBySalesId(Long id);
 }

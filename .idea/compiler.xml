@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,12 +11,12 @@
         <module name="microservice-inventory" />
         <module name="microservice-config" />
         <module name="microservice-product" />
-        <module name="microservice-stock" />
         <module name="microservice-eureka" />
         <module name="microservice-sales" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="microservice-stock" target="21" />
       <module name="microservicio-eureka" target="21" />
     </bytecodeTargetLevel>
   </component>

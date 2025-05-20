@@ -19,7 +19,7 @@ public class ISalesServiceImpl implements ISaleService {
     }
 
     @Override
-    public Sales findById(String id) {
+    public Sales findById(Long id) {
         return salesRepository.findById(id).orElseThrow();
     }
 
@@ -29,7 +29,7 @@ public class ISalesServiceImpl implements ISaleService {
     }
 
     @Override
-    public List<Sales> findByIdSales(String id) {
+    public List<Sales> findByIdSales(Long id) {
         return salesRepository.findAllBySalesId(id);
     }
 }

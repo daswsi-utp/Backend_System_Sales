@@ -24,13 +24,13 @@ public class SalesController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<?> findById(@PathVariable String id){
+    public ResponseEntity<?> findById(@PathVariable Long id){
         return ResponseEntity.ok(interfaceSalesMs.findById(id));
     }
 
     //TODO-Change later interfaceSaleMs to the actual service of product when implemented
     @GetMapping("/searchProduct/{id}")
-    public ResponseEntity<?> findByProductId(@PathVariable String id){
+    public ResponseEntity<?> findByProductId(@PathVariable Long id){
         return ResponseEntity.ok(interfaceSalesMs.findById(id));
     }
 }

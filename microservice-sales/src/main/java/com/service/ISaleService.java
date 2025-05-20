@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ISaleService {
     List<Sales> findAll();
-    Sales findById(String id);
+    Sales findById(Long id);
     void save(Sales sale);
-    List<Sales> findByIdSales(String id);
+    List<Sales> findByIdSales(Long id);
 }
