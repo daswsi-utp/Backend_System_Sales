@@ -31,6 +31,9 @@
     <module>
       microservice-inventory
     </module>
+    <module>
+      microservice-users
+    </module>
   </modules>
 
   <properties>

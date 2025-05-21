@@ -9,6 +9,7 @@
         <module name="microservice-gateway" />
         <module name="microservice-inventory" />
         <module name="microservice-eureka" />
+        <module name="microservice-users" />
         <module name="microservice-config" />
       </profile>
     </annotationProcessing>
@@ -22,6 +23,7 @@
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
+      <module name="microservice-users" options="-parameters" />
       <module name="microservicio-eureka" options="-parameters" />
     </option>
   </component>
