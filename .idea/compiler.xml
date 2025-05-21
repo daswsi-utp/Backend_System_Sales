@@ -7,13 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
+        <module name="microservice-orders" />
         <module name="microservice-inventory" />
         <module name="microservice-eureka" />
         <module name="microservice-config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="microservice-orders" target="21" />
       <module name="microservicio-eureka" target="21" />
     </bytecodeTargetLevel>
   </component>
