@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface SalesRepository extends CrudRepository<Sales, Long> {
-
-    List<Sales> findAllBySalesId(Long id);
+    List<Sales> findAllById(Long id);
 }

@@ -28,8 +28,5 @@ public class ISalesServiceImpl implements ISaleService {
         salesRepository.save(sale);
     }
 
-    @Override
-    public List<Sales> findByIdSales(Long id) {
-        return salesRepository.findAllBySalesId(id);
-    }
+
 }
