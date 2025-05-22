@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
 public class UserController
 {
     @Autowired
@@ -25,14 +24,26 @@ public class UserController
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         Optional<User> user = userService.findById(id);
-        return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return user.map(us -> ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
     }
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email){
-        User user = userService.findByEmail(email);
-        return ResponseEntity.ok(user);
+        Optional<User> userOptional = userService.findByEmail(email);
+        return  userOptional.map(us->ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<User> createUser(@RequestBody User user,@PathVariable Long id){
+        Optional<User> userOptional = userService.findById(id);
+        return userOptional.map(usDb ->{
+            usDb.setEmail(user.getEmail());
+            usDb.setName(user.getName());
+            usDb.setCity(user.getCity());
+            usDb.setCountry(user.getCountry());
+            usDb.setLastName(user.getLastName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(usDb));
+        }).orElse(ResponseEntity.notFound().build());
+    }
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
         User savedUser =userService.save(user);
