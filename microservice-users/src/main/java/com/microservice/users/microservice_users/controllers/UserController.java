@@ -5,6 +5,7 @@ import com.microservice.users.microservice_users.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class UserController
 {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
@@ -33,7 +37,7 @@ public class UserController
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> createUser(@RequestBody User user,@PathVariable Long id){
+    public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long id){
         Optional<User> userOptional = userService.findById(id);
         return userOptional.map(usDb ->{
             usDb.setEmail(user.getEmail());
@@ -46,6 +50,7 @@ public class UserController
     }
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser =userService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
