@@ -48,8 +48,7 @@ public class UserServiceImpl implements IUserService
     @Transactional
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-
+        user.setEnabled(true);
         user.setRoles(getRoles(user));
         return userRepository.save(user);
     }
@@ -65,6 +64,7 @@ public class UserServiceImpl implements IUserService
 
 
     @Override
+    @Transactional
     public Optional<User> update(User user, Long id) {
         Optional<User> userOptional = this.findById(id);
         return userOptional.map(usDb ->{
@@ -87,7 +87,7 @@ public class UserServiceImpl implements IUserService
         List<Role> roles = new ArrayList<>();
         Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
         roleOptional.ifPresent(roles::add); //otra forma
-        if(user.idAdmin()) {
+        if(Boolean.TRUE.equals(user.isAdmin())) {
             Optional<Role> adminRoleOptional = roleRepository.findByName("ROLE_ADMIN");
             adminRoleOptional.ifPresent(role -> roles.add(role));
         }

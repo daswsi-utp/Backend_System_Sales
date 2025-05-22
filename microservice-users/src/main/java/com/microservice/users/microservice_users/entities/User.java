@@ -138,7 +138,7 @@ public class User
         this.roles = roles;
     }
 
-    public Boolean idAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 

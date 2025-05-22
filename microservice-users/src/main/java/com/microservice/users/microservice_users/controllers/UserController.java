@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController
@@ -24,19 +23,19 @@ public class UserController
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
-        Optional<User> user = userService.findById(id);
-        return user.map(us -> ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
+         return userService.findById(id)
+                .map(us -> ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
     }
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email){
-        Optional<User> userOptional = userService.findByEmail(email);
-        return  userOptional.map(us->ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
+       return  userService.findByEmail(email)
+               .map(us->ResponseEntity.ok(us)).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long id){
-        Optional<User> userUpdateOptional = userService.update(user,id);
-        return  userUpdateOptional.map( userUpdate -> ResponseEntity.status(HttpStatus.CREATED).body(userUpdate))
+        return  userService.update(user,id).
+        map( userUpdate -> ResponseEntity.status(HttpStatus.CREATED).body(userUpdate))
                 .orElseGet(()->ResponseEntity.noContent().build());
 
     }
