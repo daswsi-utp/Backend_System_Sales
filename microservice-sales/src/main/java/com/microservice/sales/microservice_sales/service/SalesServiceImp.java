@@ -62,12 +62,12 @@ public class SalesServiceImp implements ISalesService{
 
     @Override
     public List<SalesProduct> findSaleProductsBySaleId(Long saleId) {
-        return salesProductRepository.findBySaleId(saleId);
+        return salesProductRepository.findBySaleIdSale(saleId);
     }
 
     @Override
     public List<SalesProductDTO> getSaleProductDetails(Long saleId) {
-        List<SalesProduct> salesProducts = salesProductRepository.findBySaleId(saleId);
+        List<SalesProduct> salesProducts = salesProductRepository.findBySaleIdSale(saleId);
         List<SalesProductDTO> salesProductDTOS = new ArrayList<>();
 
         for(SalesProduct sp : salesProducts){
