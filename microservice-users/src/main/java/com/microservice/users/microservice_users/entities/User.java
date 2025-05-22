@@ -47,6 +47,9 @@ public class User
 
     private Boolean enabled;
 
+    @Transient
+    private Boolean admin;
+
     public Boolean isEnabled() {
         return enabled;
     }
@@ -133,5 +136,13 @@ public class User
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean idAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 }
