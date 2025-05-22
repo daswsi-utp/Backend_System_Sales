@@ -71,7 +71,8 @@ public class SalesServiceImp implements ISalesService{
         List<SalesProductDTO> salesProductDTOS = new ArrayList<>();
 
         for(SalesProduct sp : salesProducts){
-            ProductDTO productDTO = productClient.getProductById(sp.getProduct().getIdProduct());
+            Long productId = sp.getId().getProductId();
+            ProductDTO productDTO = productClient.getProductById(productId);
             SalesProductDTO salesProductDTO = new SalesProductDTO();
             salesProductDTO.setProductId(productDTO.getIdProduct());
             salesProductDTO.setProductName(productDTO.getNameProduct());

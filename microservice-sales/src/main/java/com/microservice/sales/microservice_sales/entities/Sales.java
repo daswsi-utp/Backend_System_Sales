@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -22,4 +24,6 @@ public class Sales {
     @OneToOne
     @JoinColumn(name = "fk_registry", referencedColumnName = "registry_id", nullable = false)
     private Registry registry;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SalesProduct> salesProductList;
 }

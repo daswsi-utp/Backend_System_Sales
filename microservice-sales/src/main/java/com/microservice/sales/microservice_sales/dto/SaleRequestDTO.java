@@ -2,6 +2,8 @@ package com.microservice.sales.microservice_sales.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 //@Data
 @AllArgsConstructor

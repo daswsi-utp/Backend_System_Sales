@@ -45,7 +45,7 @@ public class ServiceProductImpl implements IServiceProduct {
         if (existingProduct.isPresent()) {
             Product prodToUpdate = existingProduct.get();
             prodToUpdate.setNameProduct(product.getNameProduct());
-            prodToUpdate.setDescriptionProduct(product.getDescriptionProduct());
+//            prodToUpdate.setDescriptionProduct(product.getDescriptionProduct());
             prodToUpdate.setPriceProduct(product.getPriceProduct());
             prodToUpdate.setQuantityProduct(product.getQuantityProduct());
             prodToUpdate.setBrand(product.getBrand());
