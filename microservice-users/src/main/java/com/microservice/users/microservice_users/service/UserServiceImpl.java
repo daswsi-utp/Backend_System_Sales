@@ -49,17 +49,12 @@ public class UserServiceImpl implements IUserService
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        List<Role> roles = getRoles();
-        user.setRoles(roles);
+
+        user.setRoles(getRoles());
         return userRepository.save(user);
     }
 
-    private List<Role> getRoles() {
-        List<Role> roles = new ArrayList<>();
-        Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
-        roleOptional.ifPresent(r -> roles.add(r));
-        return roles;
-    }
+
 
 
     @Override
@@ -81,12 +76,16 @@ public class UserServiceImpl implements IUserService
             usDb.setLastName(user.getLastName());
             if(user.isEnabled() != null)
                 usDb.setEnabled(user.isEnabled());
-            List<Role> roles = new ArrayList<>();
-            Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
-            roleOptional.ifPresent(r -> roles.add(r));
-            user.setRoles(roles);
+            user.setRoles(getRoles());
             return Optional.of(userRepository.save(usDb));
         }).orElseGet(()->Optional.empty());
+    }
+
+    private List<Role> getRoles() {
+        List<Role> roles = new ArrayList<>();
+        Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
+        roleOptional.ifPresent(r -> roles.add(r));
+        return roles;
     }
 
 
