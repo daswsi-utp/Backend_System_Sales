@@ -1,11 +1,14 @@
 package com.microservice.users.microservice_users.service;
 
+import com.microservice.users.microservice_users.entities.Role;
 import com.microservice.users.microservice_users.entities.User;
+import com.microservice.users.microservice_users.repositories.RoleRepository;
 import com.microservice.users.microservice_users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +17,9 @@ public class UserServiceImpl implements IUserService
 {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     @Override
@@ -37,6 +43,10 @@ public class UserServiceImpl implements IUserService
     @Override
     @Transactional
     public User save(User user) {
+        List<Role> roles = new ArrayList<>();
+        Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
+        roleOptional.ifPresent(r -> roles.add(r));
+        user.setRoles(roles);
         return userRepository.save(user);
     }
 
