@@ -11,5 +11,7 @@ public interface IUserService
           Optional<User> findById(Long id);
           Optional<User> findByEmail(String email);
           User save(User user);
+          Optional<User> update(User user, Long id);
           void deleteById(Long id);
+
 }

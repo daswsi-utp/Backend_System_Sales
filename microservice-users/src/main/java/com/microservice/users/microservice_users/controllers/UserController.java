@@ -17,9 +17,6 @@ public class UserController
     @Autowired
     private IUserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
         return ResponseEntity.ok(userService.findAll());
@@ -38,21 +35,13 @@ public class UserController
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long id){
-        Optional<User> userOptional = userService.findById(id);
-        return userOptional.map(usDb ->{
-            usDb.setEmail(user.getEmail());
-            usDb.setName(user.getName());
-            usDb.setCity(user.getCity());
-            usDb.setCountry(user.getCountry());
-            usDb.setLastName(user.getLastName());
-            if(user.isEnabled() != null)
-                usDb.setEnabled(user.isEnabled());
-            return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(usDb));
-        }).orElse(ResponseEntity.notFound().build());
+        Optional<User> userUpdateOptional = userService.update(user,id);
+        return  userUpdateOptional.map( userUpdate -> ResponseEntity.status(HttpStatus.CREATED).body(userUpdate))
+                .orElseGet(()->ResponseEntity.noContent().build());
+
     }
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser =userService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }

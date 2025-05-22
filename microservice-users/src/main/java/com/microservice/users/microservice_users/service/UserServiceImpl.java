@@ -5,6 +5,7 @@ import com.microservice.users.microservice_users.entities.User;
 import com.microservice.users.microservice_users.repositories.RoleRepository;
 import com.microservice.users.microservice_users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,9 @@ public class UserServiceImpl implements IUserService
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -43,6 +47,8 @@ public class UserServiceImpl implements IUserService
     @Override
     @Transactional
     public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         List<Role> roles = new ArrayList<>();
         Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
         roleOptional.ifPresent(r -> roles.add(r));
@@ -50,9 +56,33 @@ public class UserServiceImpl implements IUserService
         return userRepository.save(user);
     }
 
+
     @Override
     @Transactional
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
+
+    @Override
+    public Optional<User> update(User user, Long id) {
+        Optional<User> userOptional = this.findById(id);
+        return userOptional.map(usDb ->{
+
+            usDb.setEmail(user.getEmail());
+            usDb.setName(user.getName());
+            usDb.setCity(user.getCity());
+            usDb.setCountry(user.getCountry());
+            usDb.setLastName(user.getLastName());
+            if(user.isEnabled() != null)
+                usDb.setEnabled(user.isEnabled());
+            List<Role> roles = new ArrayList<>();
+            Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
+            roleOptional.ifPresent(r -> roles.add(r));
+            user.setRoles(roles);
+            return Optional.of(userRepository.save(usDb));
+        }).orElseGet(()->Optional.empty());
+    }
+
+
 }
