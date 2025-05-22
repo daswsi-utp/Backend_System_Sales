@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: micro-inventory
+    name: micro-sales
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/db_system_sales

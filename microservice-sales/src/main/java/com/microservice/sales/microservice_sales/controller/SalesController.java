@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/sales")
 public class SalesController {
@@ -26,5 +28,10 @@ public class SalesController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveSale(@RequestBody Sales sale){
         iSalesService.save(sale);
+    }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<?> getProductsBySale(@PathVariable Long id){
+       return ResponseEntity.ok(iSalesService.getSaleProductDetails(id));
     }
 }

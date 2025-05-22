@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.sql.Date;
-
-
 @Getter
 @Setter
 @Entity
@@ -29,5 +26,4 @@ public class User {
     private String dni;
     private String email;
     private String password;
-
 }

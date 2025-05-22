@@ -7,15 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "sale_product")
-public class SaleProduct {
+public class SalesProduct {
     @EmbeddedId
     private SalesProductKey id = new SalesProductKey();
 
@@ -24,13 +22,11 @@ public class SaleProduct {
     @JoinColumn(name = "fk_sale")
     private Sales Sale;
 
-    @ManyToOne
-    @MapsId("productId")
-    @JoinColumn(name = "fk_product")
-    private ProductDTO product;
+//    @ManyToOne
+//    @MapsId("productId")
+//    @JoinColumn(name = "fk_product")
+//    private ProductDTO product;
 
     @Column(nullable = false)
     private int quantity;
-
-
 }
