@@ -22,10 +22,10 @@ public class SalesProduct {
     @JoinColumn(name = "fk_sale")
     private Sales Sale;
 
-//    @ManyToOne
-//    @MapsId("productId")
-//    @JoinColumn(name = "fk_product")
-//    private ProductDTO product;
+    @ManyToOne
+    @MapsId("productId")
+    @JoinColumn(name = "fk_product")
+    private ProductDTO product;
 
     @Column(nullable = false)
     private int quantity;
