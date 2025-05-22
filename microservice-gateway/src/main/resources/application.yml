@@ -7,4 +7,4 @@ spring:
           predicates:
             - Path=/api/users/**
           filters:
-            - StripPrefix=2 #esto depende de tu ruta el mio tiene 2 niveles antes de los endpoints
+            - StripPrefix=2  #esto depende de tu ruta el mio tiene 2 niveles antes de los endpoints
