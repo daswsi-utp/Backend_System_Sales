@@ -3,9 +3,6 @@ package com.microservice.users.microservice_users.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-
-import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -35,6 +32,16 @@ public class User
     @NotBlank
     @Column(unique = true)
     private String password;
+
+    private Boolean enabled;
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public Long getId() {
         return id;

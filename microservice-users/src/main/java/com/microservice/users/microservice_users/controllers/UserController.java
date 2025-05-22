@@ -45,6 +45,8 @@ public class UserController
             usDb.setCity(user.getCity());
             usDb.setCountry(user.getCountry());
             usDb.setLastName(user.getLastName());
+            if(user.isEnabled() != null)
+                usDb.setEnabled(user.isEnabled());
             return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(usDb));
         }).orElse(ResponseEntity.notFound().build());
     }
