@@ -1,5 +1,6 @@
 package com.microservice.sales.microservice_sales.controller;
 
+import com.microservice.sales.microservice_sales.dto.SaleRequestDTO;
 import com.microservice.sales.microservice_sales.entities.Sales;
 import com.microservice.sales.microservice_sales.service.ISalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class SalesController {
     }
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveSale(@RequestBody Sales sale){
-        iSalesService.save(sale);
+    public void saveSale(@RequestBody SaleRequestDTO salesRequestDTO){
+        iSalesService.save(salesRequestDTO);
     }
 
     @GetMapping("/{id}/products")
