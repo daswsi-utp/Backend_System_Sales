@@ -1,5 +1,6 @@
 package com.microservice.sales.microservice_sales.entities;
 
+import com.microservice.sales.microservice_sales.dto.ProductDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
