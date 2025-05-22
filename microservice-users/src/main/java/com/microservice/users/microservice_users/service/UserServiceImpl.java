@@ -74,7 +74,9 @@ public class UserServiceImpl implements IUserService
             usDb.setCity(user.getCity());
             usDb.setCountry(user.getCountry());
             usDb.setLastName(user.getLastName());
-            if(user.isEnabled() != null)
+            if(user.isEnabled() == null)
+                usDb.setEnabled(true);
+            else
                 usDb.setEnabled(user.isEnabled());
             user.setRoles(getRoles(user));
             return Optional.of(userRepository.save(usDb));
