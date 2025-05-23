@@ -78,7 +78,7 @@ public class UserServiceImpl implements IUserService
                 usDb.setEnabled(true);
             else
                 usDb.setEnabled(user.isEnabled());
-            user.setRoles(getRoles(user));
+            usDb.setRoles(getRoles(user));
             return Optional.of(userRepository.save(usDb));
         }).orElseGet(()->Optional.empty());
     }
@@ -87,9 +87,9 @@ public class UserServiceImpl implements IUserService
         List<Role> roles = new ArrayList<>();
         Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
         roleOptional.ifPresent(roles::add); //otra forma
-        if(Boolean.TRUE.equals(user.isAdmin())) {
+        if(user.isAdmin()) {
             Optional<Role> adminRoleOptional = roleRepository.findByName("ROLE_ADMIN");
-            adminRoleOptional.ifPresent(role -> roles.add(role));
+            adminRoleOptional.ifPresent(roles::add);
         }
         return roles;
     }
