@@ -11,6 +11,7 @@
         <module name="microservice-eureka" />
         <module name="microservice-users" />
         <module name="microservice-config" />
+        <module name="microservice-oauth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
+      <module name="microservice-oauth" options="-parameters" />
       <module name="microservice-users" options="-parameters" />
       <module name="microservicio-eureka" options="-parameters" />
     </option>
