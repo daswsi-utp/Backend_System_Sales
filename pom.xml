@@ -34,6 +34,9 @@
     <module>
       microservice-users
     </module>
+    <module>
+      microservice-oauth
+    </module>
   </modules>
 
   <properties>
