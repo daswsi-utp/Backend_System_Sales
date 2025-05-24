@@ -104,12 +104,12 @@ public class SecurityConfig
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("frontend-app")
+                .clientId("gateway-app")
                 .clientSecret("{noop}12345")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("http://127.0.0.1:8090/login/oauth2/code/frontend-app")
+                .redirectUri("http://127.0.0.1:8090/login/oauth2/code/gateway-app")
                 .redirectUri("http://127.0.0.1:8090/login/authorized")
                 .postLogoutRedirectUri("http://127.0.0.1:8098/logout")
                 .scope(OidcScopes.OPENID)
