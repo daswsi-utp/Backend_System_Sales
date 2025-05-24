@@ -2,9 +2,11 @@ package com.microservice.gateway.microservice_gateway.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class AppController
@@ -17,5 +19,9 @@ public class AppController
           return map;
 
 
+    }
+    @PostMapping("/logout")
+    public Map<String,String> logout(){
+        return Collections.singletonMap("logout","ok");
     }
 }
