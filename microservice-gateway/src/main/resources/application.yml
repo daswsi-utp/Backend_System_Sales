@@ -2,6 +2,12 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: microservice-oauth
+          uri: lb://microservice-oauth
+          predicates:
+            - Path=/api/security/**
+          filters:
+            - StripPrefix=2
         - id: microservice-users
           uri: lb://microservice-users
           predicates:
