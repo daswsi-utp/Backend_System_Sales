@@ -32,6 +32,9 @@
     <module>
       microservice-sales
     </module>
+    <module>
+      microservice-registry
+    </module>
   </modules>
 
   <properties>

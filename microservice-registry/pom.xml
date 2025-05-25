@@ -6,7 +6,6 @@
 		<groupId>com.mycompany.app</groupId>
 		<artifactId>SpringMicroservicesSales</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.microservice.registry</groupId>
 	<artifactId>microservice-registry</artifactId>
