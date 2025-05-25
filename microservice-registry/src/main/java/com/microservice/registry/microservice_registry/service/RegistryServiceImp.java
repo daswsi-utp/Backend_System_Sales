@@ -30,7 +30,7 @@ public class RegistryServiceImp implements  IRegistryService{
     }
 
     @Override
-    public void change(Long id, Registry registry) {
+    public Registry change(Long id, Registry registry) {
         Optional<Registry> existingRegistry = registryRepository.findById(id);
         if(existingRegistry.isPresent()) {
             Registry updateRegistry = existingRegistry.get();
@@ -38,6 +38,9 @@ public class RegistryServiceImp implements  IRegistryService{
             updateRegistry.setType(registry.getType());
             updateRegistry.setTemplateUrl(registry.getTemplateUrl());
             updateRegistry.setRegistrationDate(registry.getRegistrationDate());
+            return registryRepository.save(updateRegistry);
         }
+        return null;
+
     }
 }

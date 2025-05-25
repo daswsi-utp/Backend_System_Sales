@@ -8,5 +8,5 @@ public interface IRegistryService {
     List<Registry> findAll();
     Registry findById(Long id);
     void save(Registry registry);
-    void change(Long id, Registry registry);
+    Registry change(Long id, Registry registry);
 }
