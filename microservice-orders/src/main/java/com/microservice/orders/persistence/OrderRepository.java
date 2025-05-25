@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IOrderRepository extends CrudRepository<Order, Long> {
-    @Query("SELECT o from Order o WHERE o.productId =idProduct")
-    List<Order>findAllOrder(Long idProduct);
+public interface OrderRepository extends CrudRepository<Order, Long> {
+
+    List<Order>findAllByProductId(Long productId);
 }

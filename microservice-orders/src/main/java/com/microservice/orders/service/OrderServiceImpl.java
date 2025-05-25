@@ -1,7 +1,7 @@
 package com.microservice.orders.service;
 
 import com.microservice.orders.entities.Order;
-import com.microservice.orders.persistence.IOrderRepository;
+import com.microservice.orders.persistence.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements IOrderService{
     @Autowired
-    private IOrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @Override
     public List<Order> findAll() {
