@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class OrderServiceImpl implements IOrderService{
+public class OrderServiceImpl implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;
 
@@ -24,11 +24,8 @@ public class OrderServiceImpl implements IOrderService{
     @Override
     public void save(Order order) {
         orderRepository.save(order);
-
     }
 
     @Override
-    public List<Order> findByIdProduct(Long idProduct) {
-        return orderRepository.findAllOrder(idProduct);
-    }
+    public List<Order> findByProductId(Long productId) { return orderRepository.findAllByProductId(productId); }
 }
