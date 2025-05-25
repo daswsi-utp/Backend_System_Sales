@@ -26,4 +26,9 @@ public class OrderServiceImpl implements IOrderService{
         orderRepository.save(order);
 
     }
+
+    @Override
+    public List<Order> findByIdProduct(Long idProduct) {
+        return orderRepository.findAllOrder(idProduct);
+    }
 }

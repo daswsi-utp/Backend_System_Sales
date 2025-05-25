@@ -1,7 +1,7 @@
 package com.microservice.orders.controller;
 
 import com.microservice.orders.entities.*;
-import com.microservice.orders.service.IOrderService;
+import com.microservice.orders.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,4 +27,8 @@ public class OrderController {
         return  ResponseEntity.ok(orderService.findById(id));
     }
 
+    @GetMapping("/search-order/{idProduct}")
+    public ResponseEntity<?> findByIdProduct(@PathVariable Long idProduct){
+        return ResponseEntity.ok(orderService.findByIdProduct(idProduct));
+    }
 }

@@ -21,5 +21,7 @@ public class Order {
     private Timestamp date;
     private Double total;
     private String status;
+    @Column(name = "product_Id")
+    private Long productId;
 
 }
