@@ -28,7 +28,7 @@ public class SalesServiceImp implements ISalesService{
 
     @Override
     public List<Sales> findAll() {
-        return (List<Sales>) salesRepository.findAll();
+        return salesRepository.findAll();
     }
 
     @Override
