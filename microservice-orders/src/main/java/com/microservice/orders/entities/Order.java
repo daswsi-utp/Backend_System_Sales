@@ -16,12 +16,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name_staff")
     private String nameStaff;
     @Column(name = "order_date")
-    private Timestamp date;
+    private Timestamp dateTime;
     private Double total;
     private String status;
-    @Column(name = "product_Id")
+    @Column(name = "product_id")
     private Long productId;
 
 }
