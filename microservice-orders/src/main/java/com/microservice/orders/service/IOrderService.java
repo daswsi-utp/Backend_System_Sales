@@ -9,5 +9,5 @@ public interface IOrderService {
     Order findById(Long id);
     void save (Order order);
 
-    List<Order> findByIdProduct(Long idProduct);
+    List<Order> findByProductId(Long productId);
 }
