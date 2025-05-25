@@ -15,8 +15,9 @@ public class SecurityConfig
     @Bean
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) throws Exception {
         return serverHttpSecurity.authorizeExchange(authz -> {
-            authz.pathMatchers("/authorized", "/logout").permitAll().pathMatchers(HttpMethod.GET, "/api/users").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/api/users/{id}").hasAnyAuthority("SCOPE_write")
+            authz.pathMatchers("/authorized", "/logout").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/api/users").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/api/users/{id}").hasAnyRole("ADMIN","USER")
                     .pathMatchers("/api/users/**").hasAuthority("SCOPE_write")
                     .anyExchange().authenticated();
 
