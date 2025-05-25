@@ -43,11 +43,10 @@ public class SecurityConfig
                                 Collection<String> roles = source.getClaimAsStringList("roles");
                                 Collection<GrantedAuthority> authorities = roles.stream()
                                         .map(SimpleGrantedAuthority::new)
-                                        .collect(Collectors.toList());
+                                            .collect(Collectors.toList());
                                         return Mono.just(new JwtAuthenticationToken(source,authorities));
                             }
-                        })
-                ))
+                        })))
                 .build();
     }
 }
