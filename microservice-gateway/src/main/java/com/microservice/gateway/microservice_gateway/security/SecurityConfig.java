@@ -19,10 +19,12 @@ public class SecurityConfig
                     .anyExchange().authenticated();
 
 
-        }).cors(csrf -> csrf.disable())
+        }).csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .oauth2Login(withDefaults())
                 .oauth2Client(withDefaults())
-                .oauth2ResourceServer(withDefaults())
+                .oauth2ResourceServer(ouath2 -> ouath2.jwt(
+                        withDefaults()
+                ))
                 .build();
     }
 }

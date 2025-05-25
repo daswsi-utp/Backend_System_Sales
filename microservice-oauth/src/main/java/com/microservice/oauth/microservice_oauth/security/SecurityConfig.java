@@ -80,6 +80,7 @@ public class SecurityConfig
                 .authorizeHttpRequests((authorize) -> authorize
                         .anyRequest().authenticated()
                 )
+                .csrf( csrf -> csrf.disable())
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
                 .formLogin(Customizer.withDefaults());
@@ -109,9 +110,9 @@ public class SecurityConfig
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("http://127.0.0.1:8090/login/oauth2/code/gateway-app")
+                .redirectUri("http://127.0.0.1:8090/login/oauth2/code/client-app")
                 .redirectUri("http://127.0.0.1:8090/login/authorized")
-                .postLogoutRedirectUri("http://127.0.0.1:8098/logout")
+                .postLogoutRedirectUri("http://127.0.0.1:8090/logout")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).build())

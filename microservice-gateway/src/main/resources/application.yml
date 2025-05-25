@@ -11,10 +11,10 @@ spring:
             client-id: gateway-app
             client-secret: 12345
             authorization-grant-type: authorization_code
-            redirect-uri: http://127.0.0.1:8090/login/authorized
+            redirect-uri: http://127.0.0.1:8090/authorized
             scope:
-              -openid
-              -profile
+              - openid
+              - profile
             client-name: client-app
         provider:
           spring:
