@@ -14,8 +14,10 @@ public class AppConfig
     @Bean
     @LoadBalanced
     WebClient.Builder webClient(){
-        return WebClient.builder().baseUrl("microservice-users");
+        return WebClient.builder().baseUrl("http://microservice-users");
     }
+
+    @Bean
     PasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
     }
