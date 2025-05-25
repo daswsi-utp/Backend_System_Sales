@@ -1,27 +1,21 @@
-package com.microservice.users.microservice_users.entities;
+package com.microservice.oauth.microservice_oauth.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+
+
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "users")
+
 public class User
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
 
     private String lastName;
-    @Email
-    @NotBlank
-    @Column(unique = true)
+
     private String email;
 
     private String country;
@@ -32,22 +26,20 @@ public class User
 
     private LocalDate birthDate;
 
-    @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-    @ManyToMany
-    @JoinTable(
-            name="user_roles",
-            joinColumns = {@JoinColumn(name="user_id")},inverseJoinColumns = {@JoinColumn(name="role_id")},
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","role_id"})}
-    )
     private List<Role> roles;
 
-    @NotBlank
-    @Column(unique = true)
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     private String password;
 
     private Boolean enabled;
 
-    @Transient
     private Boolean admin;
 
     public Boolean isEnabled() {
@@ -130,13 +122,7 @@ public class User
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
 
     public Boolean isAdmin() {
         return admin;
@@ -145,4 +131,5 @@ public class User
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+
 }

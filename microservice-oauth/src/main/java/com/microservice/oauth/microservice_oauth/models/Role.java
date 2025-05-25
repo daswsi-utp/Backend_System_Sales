@@ -1,12 +1,7 @@
-package com.microservice.users.microservice_users.entities;
+package com.microservice.oauth.microservice_oauth.models;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name="roles")
 public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
