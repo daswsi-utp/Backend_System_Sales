@@ -1,10 +1,8 @@
 package com.microservice.sales.microservice_sales.service;
 
 import client.ProductClient;
-import com.microservice.sales.microservice_sales.dto.ProductDTO;
-import com.microservice.sales.microservice_sales.dto.ProductQuantityDTO;
-import com.microservice.sales.microservice_sales.dto.SaleRequestDTO;
-import com.microservice.sales.microservice_sales.dto.SalesProductDTO;
+import client.RegistryClient;
+import com.microservice.sales.microservice_sales.dto.*;
 import com.microservice.sales.microservice_sales.entities.Registry;
 import com.microservice.sales.microservice_sales.entities.SalesProduct;
 import com.microservice.sales.microservice_sales.entities.Sales;
@@ -25,15 +23,41 @@ public class SalesServiceImp implements ISalesService{
     private SalesProductRepository salesProductRepository;
     @Autowired
     private ProductClient productClient;
+    @Autowired
+    private RegistryClient registryClient;
 
     @Override
-    public List<Sales> findAll() {
-        return salesRepository.findAll();
+    public List<SaleResponseDTO> findAll() {
+        List<Sales> salesList = salesRepository.findAll();
+        List<SaleResponseDTO> responseList = new ArrayList<>();
+
+        for(Sales sale : salesList){
+            RegistryDTO registryDTO = registryClient.getRegistryById(sale.getRegistry().getIdRegistry());
+            List<SalesProductDTO> products = getSaleProductDetails(sale.getIdSale());
+            SaleResponseDTO responseDTO = SaleResponseDTO.builder()
+                    .idSale(sale.getIdSale())
+                    .sum(sale.getSum())
+                    .tax(sale.getTax())
+                    .registry(registryDTO)
+                    .relatedProducts(products)
+                    .build();
+            responseList.add(responseDTO);
+        }
+        return responseList;
     }
 
     @Override
-    public Sales findById(Long id) {
-        return salesRepository.findById(id).orElseThrow();
+    public SaleResponseDTO findById(Long id) {
+        Sales sale = salesRepository.findById(id).orElseThrow();
+        RegistryDTO registryDTO = registryClient.getRegistryById(sale.getRegistry().getIdRegistry());
+        List<SalesProductDTO> products = getSaleProductDetails(sale.getIdSale());
+        return SaleResponseDTO.builder()
+                .idSale(sale.getIdSale())
+                .sum(sale.getSum())
+                .tax(sale.getTax())
+                .registry(registryDTO)
+                .relatedProducts(products)
+                .build();
     }
 
     @Override
@@ -59,11 +83,11 @@ public class SalesServiceImp implements ISalesService{
             salesProductRepository.save(salesProduct);
         }
     }
-
-    @Override
-    public List<SalesProduct> findSaleProductsBySaleId(Long saleId) {
-        return salesProductRepository.findBySaleIdSale(saleId);
-    }
+// Redundant method. Might have future use.
+//    @Override
+//    public List<SalesProduct> findSaleProductsBySaleId(Long saleId) {
+//        return salesProductRepository.findBySaleIdSale(saleId);
+//    }
 
     @Override
     public List<SalesProductDTO> getSaleProductDetails(Long saleId) {
