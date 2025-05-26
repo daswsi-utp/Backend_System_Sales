@@ -6,23 +6,23 @@ import lombok.*;
 
 import java.sql.Timestamp;
 
-@Data
+@Setter
+@Getter
 @Entity
 @Builder
-@Table(name = "orders")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name_staff")
     private String nameStaff;
+    private Double total;
     @Column(name = "order_date")
     private Timestamp dateTime;
-    private Double total;
     private String status;
-    @Column(name = "product_id")
-    private Long productId;
+
 
 }
