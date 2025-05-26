@@ -71,6 +71,7 @@ public class SalesServiceImp implements ISalesService{
         sale.setRegistry(registry);
 
         Sales savedSale = salesRepository.save(sale);
+        List<ProductQuantityDTO> stockUpdates = new ArrayList<>();
 
         for(ProductQuantityDTO productInfo : saleRequestDTO.getProducts()){
             SalesProduct salesProduct = new SalesProduct();
@@ -81,7 +82,14 @@ public class SalesServiceImp implements ISalesService{
             salesProduct.setSale(savedSale);
             salesProduct.setQuantity(productInfo.getQuantity());
             salesProductRepository.save(salesProduct);
+
+            stockUpdates.add(ProductQuantityDTO.builder()
+                    .productId(productInfo.getProductId())
+                    .quantity(productInfo.getQuantity())
+                    .build()
+            );
         }
+        productClient.decreaseStock(stockUpdates);
     }
 // Redundant method. Might have future use.
 //    @Override
