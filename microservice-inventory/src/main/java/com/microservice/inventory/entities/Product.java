@@ -39,4 +39,10 @@ public class    Product {
     @ManyToOne
     @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = true)
     private Category category;
+
+    //jack
+    @Column
+    private Long orderId;
+
+    //jack
 }

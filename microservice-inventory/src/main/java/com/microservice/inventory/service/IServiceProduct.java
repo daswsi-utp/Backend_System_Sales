@@ -15,4 +15,7 @@ public interface IServiceProduct {
     Product updateProduct(Long id, Product product);
     boolean deleteProduct(Long id);
 
+    //jack
+    List<Product> findByOrderId(Long orderId);
+
 }

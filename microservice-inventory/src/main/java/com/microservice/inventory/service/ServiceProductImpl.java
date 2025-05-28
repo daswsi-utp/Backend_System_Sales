@@ -64,4 +64,13 @@ public class ServiceProductImpl implements IServiceProduct {
         }
         return false;
     }
+
+
+    //jack
+    @Override
+    public List<Product> findByOrderId(Long orderId) {
+        return productRepository.findAllByOrderId(orderId);
+        }
+
+    //jack
 }

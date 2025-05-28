@@ -27,8 +27,8 @@ public class OrderController {
         return  ResponseEntity.ok(orderService.findById(id));
     }
 
-    @GetMapping("/search-order/{idProduct}")
-    public ResponseEntity<?> findByIdProduct(@PathVariable Long productId){
-        return ResponseEntity.ok(orderService.findByProductId(productId));
+    @GetMapping("/search-product/{orderId}")
+    public ResponseEntity<?> findProductByOrderId(@PathVariable Long orderId){
+        return ResponseEntity.ok(orderService.findProductByOrderId(orderId));
     }
 }
