@@ -2,18 +2,20 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
         <module name="microservice-inventory" />
-        <module name="microservice-eureka" />
-          <module name="microservice-sales" />
         <module name="microservice-config" />
-          <module name="microservice-registry" />
-          <module name="microservice-oauth" />
-          <module name="microservice-users" />
+        <module name="microservice-registry" />
+        <module name="microservice-eureka" />
+        <module name="microservice-sales" />
+        <module name="microservice-users" />
+        <module name="demo" />
+        <module name="microservice-oauth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,16 +24,15 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
       <module name="microservice-config" options="-parameters" />
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
-        <module name="microservice-sales" options="-parameters" />
-        <module name="microservice-registry" options="-parameters" />
       <module name="microservice-oauth" options="-parameters" />
+      <module name="microservice-registry" options="-parameters" />
+      <module name="microservice-sales" options="-parameters" />
       <module name="microservice-users" options="-parameters" />
-        <module name="microservice-oauth" options="-parameters" />
-        <module name="microservice-users" options="-parameters" />
       <module name="microservicio-eureka" options="-parameters" />
     </option>
   </component>
