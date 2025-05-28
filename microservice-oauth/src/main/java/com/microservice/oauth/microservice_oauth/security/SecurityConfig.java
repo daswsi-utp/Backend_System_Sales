@@ -93,7 +93,14 @@ public class SecurityConfig
                 .csrf( csrf -> csrf.disable())
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
-                .formLogin(Customizer.withDefaults());
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .usernameParameter("email")   // ✔️ Aquí le dices que lo que envíes como “email” será tratado como username
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/home", true)
+                        .permitAll()
+                );
+
 
         return http.build();
     }
