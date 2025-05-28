@@ -108,7 +108,13 @@ public class SalesServiceImp implements ISalesService{
             SalesProductDTO salesProductDTO = new SalesProductDTO();
             salesProductDTO.setProductId(productDTO.getIdProduct());
             salesProductDTO.setProductName(productDTO.getNameProduct());
-            salesProductDTO.setPrice(productDTO.getPriceProduct());
+            Double productPrice = productDTO.getPriceProduct();
+            if(productPrice == null){
+                throw new IllegalStateException("Product quantity error for product ID: " + productDTO.getIdProduct());
+            }
+            else{
+                salesProductDTO.setPrice(productDTO.getPriceProduct());
+            }
             salesProductDTO.setQuantity(productDTO.getQuantityProduct());
             salesProductDTOS.add(salesProductDTO);
         }

@@ -30,7 +30,7 @@ public class    Product {
     @Column(name = "price")
     private Double priceProduct;
 
-    @Column(name = "quantity")
+    @Column(name = "stock", nullable = false)
     private Integer quantityProduct;
 
     @ManyToOne
