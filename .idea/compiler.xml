@@ -12,6 +12,7 @@
         <module name="microservice-inventory" />
         <module name="microservice-eureka" />
         <module name="microservice-config" />
+        <module name="microservice-registry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -27,6 +28,7 @@
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
       <module name="microservice-orders" options="-parameters" />
+      <module name="microservice-registry" options="-parameters" />
       <module name="microservicio-eureka" options="-parameters" />
     </option>
   </component>

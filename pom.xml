@@ -34,6 +34,9 @@
     <module>
       microservice-orders
     </module>
+    <module>
+      microservice-registry
+    </module>
   </modules>
 
   <properties>
