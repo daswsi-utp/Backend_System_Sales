@@ -22,7 +22,6 @@ public class OrderProduct {
     private Order order;
 
 
-
     @Column(nullable = false)
     private int quantity;
 
