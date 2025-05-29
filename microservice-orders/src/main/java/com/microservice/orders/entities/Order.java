@@ -6,9 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.List;
+import java.math.BigDecimal;
 
-import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
@@ -26,7 +25,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "provider_id", nullable = true)
     private provider provider;
-
+    @Column(name = "order_id")
+    private BigDecimal sum;
     private String status;
 
 
