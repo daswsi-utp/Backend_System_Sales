@@ -1,5 +1,6 @@
 package com.microservice.orders.service;
 
+import com.microservice.orders.dto.OrderProductDTO;
 import com.microservice.orders.entities.Order;
 import com.microservice.orders.http.response.ProductByOrderResponse;
 import org.springframework.data.repository.query.Param;
@@ -11,5 +12,5 @@ public interface IOrderService {
     Order findById(Long id);
     void save (Order order);
 
-    ProductByOrderResponse findProductByOrderId(Long orderId);
+    List<OrderProductDTO> getSaleProductDetails(Long saleId);
 }
