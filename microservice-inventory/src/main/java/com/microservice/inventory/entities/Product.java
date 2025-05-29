@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "product")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,25 +18,26 @@ public class    Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long idProduct;
 
-    @Column(name = "nombre", nullable = false )
+    @Column(name = "name", nullable = false )
     private String nameProduct;
 
-    @Column(name = "descripcion")
-    private String descriptionProduct;
+//    @Column(name = "descripcion")
+//    private String descriptionProduct;
 
-    @Column(name = "precio")
+    @Column(name = "price")
     private Double priceProduct;
 
-    @Column(name = "cantidad")
+    @Column(name = "stock", nullable = false)
     private Integer quantityProduct;
 
     @ManyToOne
-    @JoinColumn(name = "marca_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "fk_brand", referencedColumnName = "brand_id", nullable = true)
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "fk_category", referencedColumnName = "category_id", nullable = true)
     private Category category;
 }
