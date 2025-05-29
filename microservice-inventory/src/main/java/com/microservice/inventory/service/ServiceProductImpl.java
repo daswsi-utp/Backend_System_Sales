@@ -27,7 +27,7 @@ public class ServiceProductImpl implements IServiceProduct {
 
     @Override
     public List<Product> getProductsByCategory(String categoryName) {
-        return productRepository.findByCategory_NameCategory(categoryName);
+        return productRepository.findByCategory_NameCategoryIgnoreCase(categoryName);
     }
 
     @Override
