@@ -1,4 +1,5 @@
-package com.microservice.registry.microservice_registry.dto;
+package com.microservice.sales.microservice_sales.dto;
+
 public class UserDTO {
     private String name;
     private String lastName;

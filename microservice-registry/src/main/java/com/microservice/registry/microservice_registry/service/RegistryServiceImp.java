@@ -1,10 +1,14 @@
 package com.microservice.registry.microservice_registry.service;
 
+import com.microservice.registry.microservice_registry.client.UserClient;
+import com.microservice.registry.microservice_registry.dto.RegistryResponseDTO;
+import com.microservice.registry.microservice_registry.dto.UserDTO;
 import com.microservice.registry.microservice_registry.entitites.Registry;
 import com.microservice.registry.microservice_registry.persistence.RegistryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,16 +16,40 @@ import java.util.Optional;
 public class RegistryServiceImp implements  IRegistryService{
 
     @Autowired
+    private UserClient userClient;
+    @Autowired
     private RegistryRepository registryRepository;
 
     @Override
-    public List<Registry> findAll() {
-        return registryRepository.findAll();
+    public List<RegistryResponseDTO> findAll() {
+        List<Registry> registries = registryRepository.findAll();
+        List<RegistryResponseDTO> responseList = new ArrayList<>();
+
+        for(Registry registry : registries){
+            UserDTO userDTO = userClient.getUserById(registry.getUser().getIdUser());
+            RegistryResponseDTO registryResponseDTO = RegistryResponseDTO.builder()
+                    .idRegistry(registry.getIdRegistry())
+                    .type(registry.getType())
+                    .registrationDate(registry.getRegistrationDate())
+                    .user(userDTO)
+                    .url(registry.getTemplateUrl())
+                    .build();
+            responseList.add(registryResponseDTO);
+        }
+        return responseList;
     }
 
     @Override
-    public Registry findById(Long id) {
-        return registryRepository.findById(id).orElseThrow();
+    public RegistryResponseDTO findById(Long id) {
+        Registry registry = registryRepository.findById(id).orElseThrow();
+        UserDTO userDTO = userClient.getUserById(registry.getUser().getIdUser());
+        return RegistryResponseDTO.builder().
+                idRegistry(registry.getIdRegistry())
+                .type(registry.getType())
+                .registrationDate(registry.getRegistrationDate())
+                .user(userDTO)
+                .url(registry.getTemplateUrl())
+                .build();
     }
 
     @Override
