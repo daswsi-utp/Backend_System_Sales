@@ -19,6 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="microservice-product" target="21" />
+      <module name="microservice-sales" target="21" />
       <module name="microservicio-eureka" target="21" />
     </bytecodeTargetLevel>
   </component>

@@ -39,18 +39,6 @@
     <module>
       microservice-oauth
     </module>
-    <module>
-      microservice-sales
-    </module>
-    <module>
-      microservice-registry
-    </module>
-    <module>
-      microservice-users
-    </module>
-    <module>
-      microservice-oauth
-    </module>
   </modules>
 
   <properties>
