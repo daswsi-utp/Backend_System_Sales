@@ -111,7 +111,7 @@ public class SecurityConfig {
         return filter;
     }
 
-    // Converter roles del JWT a GrantedAuthority (igual que tienes)
+
     private Converter<Jwt, Mono<? extends AbstractAuthenticationToken>> customJwtAuthenticationConverter() {
         return jwt -> {
             Collection<String> roles = jwt.getClaimAsStringList("roles");
@@ -122,7 +122,7 @@ public class SecurityConfig {
         };
     }
 
-    // Clase para deserializar JSON login
+
     static class LoginRequest {
         private String email;
         private String password;
