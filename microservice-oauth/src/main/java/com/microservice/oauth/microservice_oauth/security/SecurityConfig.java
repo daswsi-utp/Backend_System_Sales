@@ -51,7 +51,6 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfig
 {
     @Autowired
