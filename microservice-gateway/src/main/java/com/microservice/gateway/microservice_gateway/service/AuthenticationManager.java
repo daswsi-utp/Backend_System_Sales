@@ -1,4 +1,4 @@
-package com.microservice.gateway.microservice_gateway.security;
+package com.microservice.gateway.microservice_gateway.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
