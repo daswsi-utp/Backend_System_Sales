@@ -6,6 +6,7 @@ import com.microservice.orders.dto.*;
 import com.microservice.orders.entities.Order;
 import com.microservice.orders.entities.OrderProduct;
 import com.microservice.orders.entities.OrderProductKey;
+import com.microservice.orders.entities.Registry;
 import com.microservice.orders.persistence.OrderProductRepository;
 import com.microservice.orders.persistence.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,9 @@ public class OrderServiceImpl implements IOrderService {
         order.setProvider(orderRequestDTO.getProvider());
         order.setSum(orderRequestDTO.getSum());
         order.setStatus(orderRequestDTO.getStatus());
+        Registry registry = new Registry();
+        registry.setIdRegistry(orderRequestDTO.getRegistryId());
+        order.setRegistry(registry); // ¡Esta línea es la que faltaba!
         Order savedOrder = orderRepository.save(order);
         List<ProductQuantityDTO> stockUpdates = new ArrayList<>();
         for (ProductQuantityDTO productInfo : orderRequestDTO.getProducts()) {
