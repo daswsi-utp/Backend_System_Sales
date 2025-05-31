@@ -1,5 +1,6 @@
 package com.microservice.inventory.service;
 
+import com.microservice.inventory.dto.ProductStockUpdateDTO;
 import com.microservice.inventory.entities.Product;
 
 import java.util.List;
@@ -14,8 +15,9 @@ public interface IServiceProduct {
     Product createProduct(Product product);
     Product updateProduct(Long id, Product product);
     boolean deleteProduct(Long id);
+    void decreaseStock(List<ProductStockUpdateDTO> stockUpdates);
 
     //jack
-    List<Product> findByOrderId(Long orderId);
+    void increaseStock(List<ProductStockUpdateDTO> stockUpdates);
 
 }

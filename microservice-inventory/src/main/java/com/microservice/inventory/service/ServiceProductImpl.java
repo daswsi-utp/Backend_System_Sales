@@ -1,5 +1,6 @@
 package com.microservice.inventory.service;
 
+import com.microservice.inventory.dto.ProductStockUpdateDTO;
 import com.microservice.inventory.entities.Product;
 import com.microservice.inventory.persistence.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,37 @@ public class ServiceProductImpl implements IServiceProduct {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void decreaseStock(List<ProductStockUpdateDTO> stockUpdates) {
+        for(ProductStockUpdateDTO update : stockUpdates){
+            Product product = productRepository.findById(update.getProductId()).orElseThrow(() -> new RuntimeException("Product not found with this ID: " + update.getProductId()));
+            Integer currentQuantity = product.getQuantityProduct();
+            if(currentQuantity == null){
+                throw new IllegalStateException("Product quantity error for product ID: " + product.getIdProduct());
+            }
+            int newQuantity = product.getQuantityProduct() - update.getQuantity();
+            if(newQuantity < 0){
+                throw new IllegalStateException("Insufficient stock");
+            }
+
+            product.setQuantityProduct(newQuantity);
+            productRepository.save(product);
+        }
+    }
+    @Override
+    public void increaseStock(List<ProductStockUpdateDTO> stockUpdates) {
+        for (ProductStockUpdateDTO update : stockUpdates) {
+            Product product = productRepository.findById(update.getProductId())
+                    .orElseThrow(() -> new RuntimeException("Product not found with this ID: " + update.getProductId()));
+            Integer currentQuantity = product.getQuantityProduct();
+            if (currentQuantity == null) {
+                throw new IllegalStateException("Product quantity error for product ID: " + product.getIdProduct());
+            }
+            int newQuantity = currentQuantity + update.getQuantity(); // Aumentar la cantidad
+            product.setQuantityProduct(newQuantity);
+            productRepository.save(product);
+        }
     }
 }

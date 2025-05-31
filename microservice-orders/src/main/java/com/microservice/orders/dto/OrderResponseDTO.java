@@ -2,10 +2,19 @@ package com.microservice.orders.dto;
 
 import com.microservice.orders.entities.provider;
 import com.microservice.orders.entities.warehouse;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class OrderResponseDTO {
     private warehouse warehouse;
     private provider provider;

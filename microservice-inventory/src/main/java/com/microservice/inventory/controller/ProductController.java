@@ -1,11 +1,11 @@
 package com.microservice.inventory.controller;
 
+import com.microservice.inventory.dto.ProductStockUpdateDTO;
 import com.microservice.inventory.entities.Product;
 import com.microservice.inventory.persistence.ProductRepository;
 import com.microservice.inventory.service.IServiceProduct;
 import com.microservice.inventory.service.ServiceProductImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,12 +57,18 @@ public class ProductController {
         return iServiceProduct.getProductsByCategory(categoryName);
 
     }
-
-    //jack
-    @GetMapping("/search-by-order/{orderId}")
-    public ResponseEntity<?> findByIdOrder(@PathVariable Long orderId){
-        return ResponseEntity.ok(iServiceProduct.findByOrderId(orderId));
+    @PutMapping("/stock/decrease")
+    public ResponseEntity<?> decreaseStock(@RequestBody List<ProductStockUpdateDTO> stockUpdateList){
+        iServiceProduct.decreaseStock(stockUpdateList);
+        return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/stock/increase")
+    public ResponseEntity<?> increaseStock(@RequestBody List<ProductStockUpdateDTO> stockUpdateList){
+        iServiceProduct.increaseStock(stockUpdateList);
+        return ResponseEntity.ok().build();
+    }
+
 
 
 }

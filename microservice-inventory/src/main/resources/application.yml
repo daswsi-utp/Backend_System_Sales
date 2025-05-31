@@ -6,7 +6,7 @@ spring:
     name: micro-inventory
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/InventoryDB
+    url: jdbc:postgresql://localhost:5432/italo
     username: postgres
     password: admin
   jpa:
