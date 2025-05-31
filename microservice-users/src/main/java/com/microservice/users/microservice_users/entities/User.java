@@ -17,10 +17,11 @@ public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String name;
-    @Column(name = "lat_name")
+    @Column(name = "last_name")
     private String lastName;
     @Email
     @NotBlank

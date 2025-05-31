@@ -12,6 +12,6 @@ import java.sql.Timestamp;
 public class RegistryDTO {
     private String type;
     private Timestamp registrationDate;
-    private UserDTO useDto;
+    private UserDTO user;
     private String templateUrl;
 }

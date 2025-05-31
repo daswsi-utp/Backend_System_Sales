@@ -13,6 +13,6 @@ import java.sql.Date;
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long idUser;
 }

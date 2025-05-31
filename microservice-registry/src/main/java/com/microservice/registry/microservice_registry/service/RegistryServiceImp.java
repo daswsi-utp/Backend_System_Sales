@@ -32,7 +32,7 @@ public class RegistryServiceImp implements  IRegistryService{
                     .type(registry.getType())
                     .registrationDate(registry.getRegistrationDate())
                     .user(userDTO)
-                    .url(registry.getTemplateUrl())
+                    .templateUrl(registry.getTemplateUrl())
                     .build();
             responseList.add(registryResponseDTO);
         }
@@ -48,7 +48,7 @@ public class RegistryServiceImp implements  IRegistryService{
                 .type(registry.getType())
                 .registrationDate(registry.getRegistrationDate())
                 .user(userDTO)
-                .url(registry.getTemplateUrl())
+                .templateUrl(registry.getTemplateUrl())
                 .build();
     }
 

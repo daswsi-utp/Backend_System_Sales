@@ -14,5 +14,5 @@ public class RegistryResponseDTO {
     private String type;
     private Timestamp registrationDate;
     private UserDTO user;
-    private String url;
+    private String templateUrl;
 }
