@@ -8,27 +8,34 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
-        <module name="microservice-orders" />
         <module name="microservice-inventory" />
-        <module name="microservice-eureka" />
         <module name="microservice-config" />
         <module name="microservice-registry" />
+        <module name="microservice-orders" />
+        <module name="microservice-eureka" />
+        <module name="microservice-sales" />
+        <module name="microservice-users" />
+        <module name="demo" />
+        <module name="microservice-oauth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="microservice-product" target="21" />
-      <module name="microservice-sales" target="21" />
       <module name="microservicio-eureka" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
       <module name="microservice-config" options="-parameters" />
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
+      <module name="microservice-oauth" options="-parameters" />
       <module name="microservice-orders" options="-parameters" />
       <module name="microservice-registry" options="-parameters" />
+      <module name="microservice-sales" options="-parameters" />
+      <module name="microservice-users" options="-parameters" />
       <module name="microservicio-eureka" options="-parameters" />
     </option>
   </component>

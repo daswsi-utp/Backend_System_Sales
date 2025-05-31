@@ -18,13 +18,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "fk_warehouse", referencedColumnName = "id", nullable = true)
     private warehouse warehouse;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "fk_provider", referencedColumnName = "id", nullable = true)
     private provider provider;
-
 
     @OneToOne
     @JoinColumn(name = "fk_registry", referencedColumnName = "registry_id", nullable = false)
