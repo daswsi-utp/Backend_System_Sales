@@ -1,41 +1,62 @@
+server:
+  port: 8080
 spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://127.0.0.1:9100
-      client:
-        registration:
-          client-app:
-            provider: spring
-            client-id: gateway-app
-            client-secret: 12345
-            authorization-grant-type: authorization_code
-            redirect-uri: http://127.0.0.1:8090/login/oauth2/code/client-app
-            scope:
-              - openid
-              - profile
-
-            client-name: client-app
-        provider:
-          spring:
-            issuer-uri: http://127.0.0.1:9100
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: microservice-gateway
+  #security:
+      # oauth2:
+      #     resourceserver:
+      # jwt:
+      #   issuer-uri: http://127.0.0.1:9100
+      #client:
+      # registration:
+      #   client-app:
+      #     provider: spring
+      #     client-id: gateway-app
+      #     client-secret: 12345
+      #     authorization-grant-type: authorization_code
+      #     redirect-uri: http://127.0.0.1:8090/login/oauth2/code/client-app
+      #     scope:
+      #       - openid
+      #       - profile
+      #
+      #     client-name: client-app
+      # provider:
+      #   spring:
+    #     issuer-uri: http://127.0.0.1:9100
 
   cloud:
     gateway:
-      default-filters:
-        - TokenRelay
+      discovery:
+        locator:
+          enabled: true
+          # default-filters:
+        # - TokenRelay
       routes:
-        - id: microservice-oauth
-          uri: lb://microservice-oauth
+        - id: microservice-registry
+          uri: http://localhost:9091
           predicates:
-            - Path=/api/security/**
-          filters:
-            - StripPrefix=2
+              - Path=/api/registry/**
+        - id: microservice-inventory
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/products/**
+        - id: microservice-sales
+          uri: http://localhost:9090
+          predicates:
+            - Path=/api/sales/**
+       # - id: microservice-oauth
+       #   uri: lb://microservice-oauth
+       #   predicates:
+       #     - Path=/api/security/**
+       #   filters:
+       #     - StripPrefix=2
         - id: microservice-users
-          uri: lb://microservice-users
+          uri: http://localhost:8092
           predicates:
             - Path=/api/users/**
-          filters:
-            - StripPrefix=2
+       #   filters:
+       #     - StripPrefix=2
   #esto depende de tu ruta el mio tiene 2 niveles antes de los endpoints

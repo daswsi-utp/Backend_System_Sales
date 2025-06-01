@@ -63,4 +63,12 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/stock/increase")
+    public ResponseEntity<?> increaseStock(@RequestBody List<ProductStockUpdateDTO> stockUpdateList){
+        iServiceProduct.increaseStock(stockUpdateList);
+        return ResponseEntity.ok().build();
+    }
+
+
+
 }

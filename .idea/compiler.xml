@@ -11,6 +11,7 @@
         <module name="microservice-inventory" />
         <module name="microservice-config" />
         <module name="microservice-registry" />
+        <module name="microservice-orders" />
         <module name="microservice-eureka" />
         <module name="microservice-sales" />
         <module name="microservice-users" />
@@ -31,6 +32,7 @@
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-inventory" options="-parameters" />
       <module name="microservice-oauth" options="-parameters" />
+      <module name="microservice-orders" options="-parameters" />
       <module name="microservice-registry" options="-parameters" />
       <module name="microservice-sales" options="-parameters" />
       <module name="microservice-users" options="-parameters" />

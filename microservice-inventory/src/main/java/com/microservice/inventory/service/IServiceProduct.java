@@ -16,4 +16,8 @@ public interface IServiceProduct {
     Product updateProduct(Long id, Product product);
     boolean deleteProduct(Long id);
     void decreaseStock(List<ProductStockUpdateDTO> stockUpdates);
+
+    //jack
+    void increaseStock(List<ProductStockUpdateDTO> stockUpdates);
+
 }

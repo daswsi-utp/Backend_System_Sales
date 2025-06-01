@@ -39,6 +39,12 @@
     <module>
       microservice-oauth
     </module>
+    <module>
+      microservice-registry
+    </module>
+    <module>
+      microservice-orders
+    </module>
   </modules>
 
   <properties>

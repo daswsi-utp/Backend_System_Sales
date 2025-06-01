@@ -1,15 +1,16 @@
-package com.microservice.sales.microservice_sales.dto;
+package com.microservice.registry.microservice_registry.dto;
+
 
 import lombok.*;
 
 import java.sql.Timestamp;
-
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class RegistryDTO {
+public class RegistryResponseDTO {
+    private Long idRegistry;
     private String type;
     private Timestamp registrationDate;
     private UserDTO user;

@@ -46,7 +46,6 @@ public class ServiceProductImpl implements IServiceProduct {
         if (existingProduct.isPresent()) {
             Product prodToUpdate = existingProduct.get();
             prodToUpdate.setNameProduct(product.getNameProduct());
-//            prodToUpdate.setDescriptionProduct(product.getDescriptionProduct());
             prodToUpdate.setPriceProduct(product.getPriceProduct());
             prodToUpdate.setQuantityProduct(product.getQuantityProduct());
             prodToUpdate.setBrand(product.getBrand());
@@ -79,6 +78,20 @@ public class ServiceProductImpl implements IServiceProduct {
                 throw new IllegalStateException("Insufficient stock");
             }
 
+            product.setQuantityProduct(newQuantity);
+            productRepository.save(product);
+        }
+    }
+    @Override
+    public void increaseStock(List<ProductStockUpdateDTO> stockUpdates) {
+        for (ProductStockUpdateDTO update : stockUpdates) {
+            Product product = productRepository.findById(update.getProductId())
+                    .orElseThrow(() -> new RuntimeException("Product not found with this ID: " + update.getProductId()));
+            Integer currentQuantity = product.getQuantityProduct();
+            if (currentQuantity == null) {
+                throw new IllegalStateException("Product quantity error for product ID: " + product.getIdProduct());
+            }
+            int newQuantity = currentQuantity + update.getQuantity(); // Aumentar la cantidad
             product.setQuantityProduct(newQuantity);
             productRepository.save(product);
         }

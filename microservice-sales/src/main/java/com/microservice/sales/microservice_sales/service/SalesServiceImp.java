@@ -97,7 +97,6 @@ public class SalesServiceImp implements ISalesService{
 //        return salesProductRepository.findBySaleIdSale(saleId);
 //    }
 
-    @Override
     public List<SalesProductDTO> getSaleProductDetails(Long saleId) {
         List<SalesProduct> salesProducts = salesProductRepository.findBySaleIdSale(saleId);
         List<SalesProductDTO> salesProductDTOS = new ArrayList<>();

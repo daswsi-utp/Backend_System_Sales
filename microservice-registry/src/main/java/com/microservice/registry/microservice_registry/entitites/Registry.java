@@ -22,7 +22,7 @@ public class Registry {
     @Column(name = "registration_date")
     private Timestamp registrationDate;
     @OneToOne
-    @JoinColumn(name = "fk_user", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = "fk_user", referencedColumnName = "id", nullable = false)
     private User user;
     @Column(name = "template_url")
     private String templateUrl;
