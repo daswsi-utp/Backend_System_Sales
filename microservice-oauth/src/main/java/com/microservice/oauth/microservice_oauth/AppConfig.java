@@ -8,17 +8,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class AppConfig
-{
+public class AppConfig {
 
     @Bean
     @LoadBalanced
-    WebClient.Builder webClient(){
-        return WebClient.builder().baseUrl("http://microservice-users");
+    public WebClient.Builder loadBalancedWebClientBuilder() {
+        return WebClient.builder()
+                .baseUrl("http://microservice-users") // Nombre del servicio registrado en Eureka
+                .defaultHeader("Accept", "application/json")
+                .defaultHeader("Content-Type", "application/json");
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
-        return  new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public WebClient usersWebClient(WebClient.Builder loadBalancedWebClientBuilder) {
+        return loadBalancedWebClientBuilder
+                .baseUrl("http://microservice-users")
+                .build();
     }
 }
