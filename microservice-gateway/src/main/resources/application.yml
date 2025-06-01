@@ -57,6 +57,10 @@ spring:
           uri: http://localhost:8092
           predicates:
             - Path=/api/users/**
+        - id: microservice-orders
+          uri: http://localhost:9092
+          predicates:
+            - Path=/api/order/**
        #   filters:
        #     - StripPrefix=2
   #esto depende de tu ruta el mio tiene 2 niveles antes de los endpoints
