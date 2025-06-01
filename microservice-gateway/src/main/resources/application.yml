@@ -1,4 +1,10 @@
+server:
+  port: 8080
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: microservice-gateway
   security:
     oauth2:
       resourceserver:
@@ -23,9 +29,24 @@ spring:
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       default-filters:
         - TokenRelay
       routes:
+        - id: microservice-registry
+          uri: http://localhost:9091
+          predicates:
+              - Path=/api/registry
+        - id: microservice-inventory
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/products
+        - id: microservice-sales
+          uri: http://localhost:9090
+          predicates:
+            - Path=/api/sales
         - id: microservice-oauth
           uri: lb://microservice-oauth
           predicates:
