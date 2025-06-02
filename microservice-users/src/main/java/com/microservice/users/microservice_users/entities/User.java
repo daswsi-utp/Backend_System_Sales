@@ -4,24 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
-@Getter
-@Setter
+
 @Entity
 @Table(name = "users")
 public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     private String name;
-    @Column(name = "last_name")
+
     private String lastName;
     @Email
     @NotBlank
@@ -33,7 +29,7 @@ public class User
     private String city;
 
     private String state;
-    @Column(name = "birth_date")
+
     private LocalDate birthDate;
 
     @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
