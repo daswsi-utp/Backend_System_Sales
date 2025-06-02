@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 "/actuator/health"
                         ).permitAll()
                         .pathMatchers(HttpMethod.OPTIONS).permitAll()
+                        .pathMatchers(HttpMethod.POST, "/api/users").permitAll()
                         .pathMatchers("/public/**", "/authorized", "/logout").permitAll()
                         .pathMatchers(HttpMethod.GET, "/api/users").hasAnyRole("ADMIN", "USER")
                         .pathMatchers(HttpMethod.GET, "/api/users/{id}").hasAnyRole("ADMIN", "USER")
