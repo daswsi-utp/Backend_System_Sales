@@ -2,14 +2,14 @@ package com.microservice.orders.service;
 
 import com.microservice.orders.client.ProductClient;
 import com.microservice.orders.client.RegistryClient;
+import com.microservice.orders.client.UserClient;
 import com.microservice.orders.dto.*;
-import com.microservice.orders.entities.Order;
-import com.microservice.orders.entities.OrderProduct;
-import com.microservice.orders.entities.OrderProductKey;
-import com.microservice.orders.entities.Registry;
+import com.microservice.orders.entities.*;
 import com.microservice.orders.enums.OrderStatus;
 import com.microservice.orders.persistence.OrderProductRepository;
 import com.microservice.orders.persistence.OrderRepository;
+import com.microservice.orders.persistence.WarehouseRepository;
+import com.microservice.orders.persistence.providerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +27,12 @@ public class OrderServiceImpl implements IOrderService {
     private ProductClient productClient;
     @Autowired
     private RegistryClient registryClient;
+    @Autowired
+    private WarehouseRepository warehouseRepository; // Repositorio para warehouse
+    @Autowired
+    private providerRepository providerRepository;
+    @Autowired
+    private UserClient userClient;
 
     @Override
     public List<OrderResponseDTO> findAll() {
@@ -70,14 +76,24 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void save(OrderRequestDTO orderRequestDTO) {
         Order order = new Order();
-        order.setWarehouse(orderRequestDTO.getWarehouse());
-        order.setProvider(orderRequestDTO.getProvider());
-        order.setSum(orderRequestDTO.getSum());
-        order.setStatus(orderRequestDTO.getStatus());
+        warehouse warehouse = warehouseRepository.findById(orderRequestDTO.getWarehouse().getId())
+                .orElseThrow(() -> new RuntimeException("Warehouse not found with ID: " + orderRequestDTO.getWarehouse().getId()));
+        provider provider = providerRepository.findById(orderRequestDTO.getProvider().getId())
+                .orElseThrow(() -> new RuntimeException("Provider not found with ID: " + orderRequestDTO.getProvider().getId()));
+        // Asignar entidades cargadas
+        order.setWarehouse(warehouse);
+        order.setProvider(provider);
+
+        // Asignar Registry solo con ID (asumiendo que JPA puede trabajar con eso)
         Registry registry = new Registry();
         registry.setIdRegistry(orderRequestDTO.getRegistryId());
-        order.setRegistry(registry); // ¡Esta línea es la que faltaba!
+        order.setRegistry(registry);
+
+        order.setSum(orderRequestDTO.getSum());
+        order.setStatus(orderRequestDTO.getStatus());
+
         Order savedOrder = orderRepository.save(order);
+
         List<ProductQuantityDTO> stockUpdates = new ArrayList<>();
         for (ProductQuantityDTO productInfo : orderRequestDTO.getProducts()) {
             OrderProduct orderProduct = new OrderProduct();
@@ -88,13 +104,29 @@ public class OrderServiceImpl implements IOrderService {
             orderProduct.setOrder(savedOrder);
             orderProduct.setQuantity(productInfo.getQuantity());
             orderProductRepository.save(orderProduct);
+
             stockUpdates.add(ProductQuantityDTO.builder()
                     .productId(productInfo.getProductId())
                     .quantity(productInfo.getQuantity())
                     .build());
         }
+
         productClient.increaseStock(stockUpdates);
     }
+
+
+    @Override
+    public List<warehouse> getAllWarehouses() {
+        return warehouseRepository.findAll(); // Asumiendo que tienes un repositorio para warehouse
+    }
+
+    @Override
+    public List<provider> getAllProviders() {
+        return providerRepository.findAll(); // Asumiendo que tienes un repositorio para provider
+    }
+
+
+
 
     @Override
     public List<OrderProductDTO> getOrderProductDetails(Long orderId) {
@@ -131,7 +163,10 @@ public class OrderServiceImpl implements IOrderService {
                 .build();
     }
 
-
+    @Override
+    public List<UserDTO> getAllUsers() {
+        return userClient.getAllUsers();
+    }
 
 
 }

@@ -1,7 +1,6 @@
 package com.microservice.orders.dto;
 import com.microservice.orders.entities.provider;
 import com.microservice.orders.entities.warehouse;
-import com.microservice.orders.enums.OrderStatus;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
@@ -17,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 public class OrderRequestDTO {
+
     private warehouse warehouse;
     private provider provider;
 
