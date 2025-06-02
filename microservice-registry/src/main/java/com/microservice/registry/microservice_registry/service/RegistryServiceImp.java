@@ -4,6 +4,7 @@ import com.microservice.registry.microservice_registry.client.UserClient;
 import com.microservice.registry.microservice_registry.dto.RegistryResponseDTO;
 import com.microservice.registry.microservice_registry.dto.UserDTO;
 import com.microservice.registry.microservice_registry.entitites.Registry;
+import com.microservice.registry.microservice_registry.entitites.User;
 import com.microservice.registry.microservice_registry.persistence.RegistryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +54,13 @@ public class RegistryServiceImp implements  IRegistryService{
     }
 
     @Override
-    public void save(Registry registry) {
-        registryRepository.save(registry);
+    public Registry save(Registry registry) {
+        Long userId= registry.getUser().getIdUser();
+        UserDTO userDTO = userClient.getUserById(userId);
+        User userEntity = new User();
+        userEntity.setIdUser(userDTO.getId());
+        registry.setUser(userEntity);
+        return registryRepository.save(registry);
     }
 
     @Override
