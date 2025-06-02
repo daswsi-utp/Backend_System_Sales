@@ -1,5 +1,6 @@
 package com.microservice.registry.microservice_registry.controller;
 
+import com.microservice.registry.microservice_registry.dto.RegistryResponseDTO;
 import com.microservice.registry.microservice_registry.entitites.Registry;
 import com.microservice.registry.microservice_registry.service.IRegistryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class RegistryController {
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveRegistry(@RequestBody Registry registry){
-       iRegistryService.save(registry);
+    public Registry saveRegistry(@RequestBody Registry registry){
+       return iRegistryService.save(registry);
     }
 
     @GetMapping("/all")
