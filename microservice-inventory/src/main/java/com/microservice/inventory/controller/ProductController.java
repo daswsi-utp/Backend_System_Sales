@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/search/{name}")
-    public List<Product> searchProductByName(@RequestParam String name){
+    public List<Product> searchProductByName(@PathVariable String name){
         return iServiceProduct.searchProductByName(name);
 
     }
