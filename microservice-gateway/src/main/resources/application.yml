@@ -19,3 +19,19 @@ spring:
             - Path=/api/users/**
           filters:
             - StripPrefix=2
+        - id: microservice-orders
+          uri: lb://localhost:9092
+          predicates:
+            - Path=/api/order/**
+        - id: microservice-registry
+          uri: lb://localhost:9091
+          predicates:
+            - Path=/api/registry/**
+        - id: microservice-inventory
+          uri: lb://localhost:9093
+          predicates:
+            - Path=/api/products/**
+        - id: microservice-sales
+          uri: http://localhost:9090
+          predicates:
+             - Path=/api/sales/**
