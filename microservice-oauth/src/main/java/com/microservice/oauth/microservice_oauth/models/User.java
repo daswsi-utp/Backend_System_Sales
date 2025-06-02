@@ -122,8 +122,6 @@ public class User
         this.password = password;
     }
 
-
-
     public Boolean isAdmin() {
         return admin;
     }

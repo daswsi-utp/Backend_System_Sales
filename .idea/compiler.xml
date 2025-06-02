@@ -20,6 +20,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="microservice-orders" target="21" />
+      <module name="microservice-registry" target="21" />
+      <module name="microservice-sales" target="21" />
       <module name="microservice-product" target="21" />
       <module name="microservicio-eureka" target="21" />
     </bytecodeTargetLevel>
