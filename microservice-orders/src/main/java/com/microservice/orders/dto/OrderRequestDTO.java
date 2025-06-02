@@ -1,6 +1,7 @@
 package com.microservice.orders.dto;
 import com.microservice.orders.entities.provider;
 import com.microservice.orders.entities.warehouse;
+import com.microservice.orders.enums.OrderStatus;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
@@ -22,5 +23,5 @@ public class OrderRequestDTO {
     private Long registryId;
     private List<ProductQuantityDTO>products;
     private BigDecimal sum;
-    private String status;
+    private int status;
 }

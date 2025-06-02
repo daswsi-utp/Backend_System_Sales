@@ -1,14 +1,14 @@
 server:
-  port: 8090
+  port: 9093
 
 spring:
   application:
     name: micro-inventory
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db_system_sales
+    url: jdbc:postgresql://localhost:5432/italo
     username: postgres
-    password: kenyiaqp10
+    password: admin
   jpa:
     hibernate:
       ddl-auto: update

@@ -33,7 +33,7 @@ public class Order {
     @Column(name = "sum")
     private BigDecimal sum;
     @Column(name = "status")
-    private String status;
+    private int status;
 
 
 }

@@ -3,6 +3,7 @@ package com.microservice.orders.service;
 import com.microservice.orders.dto.OrderProductDTO;
 import com.microservice.orders.dto.OrderRequestDTO;
 import com.microservice.orders.dto.OrderResponseDTO;
+import com.microservice.orders.enums.OrderStatus;
 
 import java.util.List;
 
@@ -12,4 +13,8 @@ public interface IOrderService {
     void save(OrderRequestDTO orderRequestDTO);
 
     List<OrderProductDTO> getOrderProductDetails(Long orderId);
+    OrderResponseDTO updateOrderStatus(Long orderId, OrderStatus status);
+
+
+
 }

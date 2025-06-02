@@ -7,6 +7,7 @@ import com.microservice.orders.entities.Order;
 import com.microservice.orders.entities.OrderProduct;
 import com.microservice.orders.entities.OrderProductKey;
 import com.microservice.orders.entities.Registry;
+import com.microservice.orders.enums.OrderStatus;
 import com.microservice.orders.persistence.OrderProductRepository;
 import com.microservice.orders.persistence.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class OrderServiceImpl implements IOrderService {
             RegistryDTO registryDTO = registryClient.getRegistryById(order.getRegistry().getIdRegistry());
             List<OrderProductDTO> products = getOrderProductDetails(order.getId());
             OrderResponseDTO responseDTO = OrderResponseDTO.builder()
+                    .id(order.getId()) // Asegúrate de incluir el ID aquí
                     .warehouse(order.getWarehouse())
                     .provider(order.getProvider())
                     .registry(registryDTO)
@@ -47,12 +49,14 @@ public class OrderServiceImpl implements IOrderService {
         return responseList;
     }
 
+
     @Override
     public OrderResponseDTO findById(Long id) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
         RegistryDTO registryDTO = registryClient.getRegistryById(order.getRegistry().getIdRegistry());
         List<OrderProductDTO> products = getOrderProductDetails(order.getId());
         return OrderResponseDTO.builder()
+                .id(order.getId()) // Asegúrate de incluir el ID aquí
                 .warehouse(order.getWarehouse())
                 .provider(order.getProvider())
                 .registry(registryDTO)
@@ -61,6 +65,7 @@ public class OrderServiceImpl implements IOrderService {
                 .status(order.getStatus())
                 .build();
     }
+
 
     @Override
     public void save(OrderRequestDTO orderRequestDTO) {
@@ -109,4 +114,24 @@ public class OrderServiceImpl implements IOrderService {
         }
         return orderProductDTOS;
     }
+
+
+    @Override
+    public OrderResponseDTO updateOrderStatus(Long orderId, OrderStatus status) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        order.setStatus(status.getValue()); // Almacena el valor del enum como int
+        orderRepository.save(order); // Guarda la orden actualizada
+        return OrderResponseDTO.builder()
+                .warehouse(order.getWarehouse())
+                .provider(order.getProvider())
+                .registry(registryClient.getRegistryById(order.getRegistry().getIdRegistry()))
+                .relatedProducts(getOrderProductDetails(order.getId()))
+                .sum(order.getSum())
+                .status(order.getStatus()) // Esto ahora es un int
+                .build();
+    }
+
+
+
+
 }

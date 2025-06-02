@@ -11,7 +11,7 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: microservice-gateway
-  #security:
+      #security:
       # oauth2:
       #     resourceserver:
       # jwt:
@@ -30,7 +30,7 @@ spring:
       #
       #     client-name: client-app
       # provider:
-      #   spring:
+    #   spring:
     #     issuer-uri: http://127.0.0.1:9100
 
   cloud:
@@ -56,21 +56,21 @@ spring:
         - id: microservice-registry
           uri: http://localhost:9091
           predicates:
-              - Path=/api/registry/**
+            - Path=/api/registry/**
         - id: microservice-inventory
-          uri: http://localhost:8090
+          uri: http://localhost:9093
           predicates:
             - Path=/api/products/**
         - id: microservice-sales
           uri: http://localhost:9090
           predicates:
             - Path=/api/sales/**
-       # - id: microservice-oauth
-       #   uri: lb://microservice-oauth
-       #   predicates:
-       #     - Path=/api/security/**
-       #   filters:
-       #     - StripPrefix=2
+        # - id: microservice-oauth
+        #   uri: lb://microservice-oauth
+        #   predicates:
+        #     - Path=/api/security/**
+        #   filters:
+        #     - StripPrefix=2
         - id: microservice-users
           uri: lb://microservice-users
           predicates:
@@ -79,6 +79,6 @@ spring:
           uri: http://localhost:9092
           predicates:
             - Path=/api/order/**
-       #   filters:
-       #     - StripPrefix=2
+        #   filters:
+        #     - StripPrefix=2
   #esto depende de tu ruta el mio tiene 2 niveles antes de los endpoints
