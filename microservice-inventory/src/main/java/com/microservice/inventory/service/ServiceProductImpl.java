@@ -31,6 +31,11 @@ public class ServiceProductImpl implements IServiceProduct {
     }
 
     @Override
+    public List<Product> getProductByBrand(String brandName) {
+        return productRepository.findByBrand_NameBrandIgnoreCase(brandName);
+    }
+
+    @Override
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }

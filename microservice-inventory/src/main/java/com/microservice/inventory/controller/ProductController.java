@@ -46,7 +46,7 @@ public class ProductController {
         return iServiceProduct.deleteProduct(id);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search/{name}")
     public List<Product> searchProductByName(@RequestParam String name){
         return iServiceProduct.searchProductByName(name);
 
@@ -55,7 +55,10 @@ public class ProductController {
     public List<Product> getProductByCategory(@PathVariable String categoryName)
     {
         return iServiceProduct.getProductsByCategory(categoryName);
-
+    }
+    @GetMapping("/brand/{brandName}")
+    public List<Product> getProductByBrand(@PathVariable String brandName){
+        return iServiceProduct.getProductByBrand(brandName);
     }
     @PutMapping("/stock/decrease")
     public ResponseEntity<?> decreaseStock(@RequestBody List<ProductStockUpdateDTO> stockUpdateList){

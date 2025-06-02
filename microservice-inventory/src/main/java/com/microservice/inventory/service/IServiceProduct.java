@@ -11,6 +11,7 @@ public interface IServiceProduct {
     List<Product> getAllProducts();
     List<Product> searchProductByName(String name);
     List<Product> getProductsByCategory(String categoryName);
+    List<Product> getProductByBrand(String brandName);
     Optional<Product> getProductById(Long id);
     Product createProduct(Product product);
     Product updateProduct(Long id, Product product);
