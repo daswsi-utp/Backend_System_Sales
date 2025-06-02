@@ -42,8 +42,5 @@ public class    Product {
     private Category category;
 
     //jack
-    @Column
-    private Long orderId;
-
     //jack
 }
