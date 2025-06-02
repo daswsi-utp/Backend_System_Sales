@@ -38,13 +38,23 @@ public class SecurityConfig {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        http
+                .authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt ->
+                        jwt.jwkSetUri("http://<auth-server-host>:<port>/.well-known/jwks.json")
+                ));
+        return http.build();
+    }
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http, ReactiveJwtDecoder jwtDecoder) {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeExchange(exchange -> exchange
+                        .pathMatchers("/.well-known/jwks.json").permitAll()
+                        .pathMatchers("/.well-known/openid-configuration", "/jwks").permitAll()
                         .pathMatchers("/.well-known/openid-configuration", "/oauth2/jwks").permitAll()
                         .pathMatchers("/login", "/actuator/**").permitAll()
                         .anyExchange().authenticated()
@@ -54,6 +64,7 @@ public class SecurityConfig {
                 );
         return http.build();
     }
+
 
 
     @Bean
@@ -108,7 +119,7 @@ public class SecurityConfig {
 
     @Bean
     public ReactiveJwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
-        return NimbusReactiveJwtDecoder.withJwkSetUri("http://127.0.0.1:9100/jwks").build();
+        return NimbusReactiveJwtDecoder.withJwkSetUri("http://127.0.0.1:9100/.well-known/jwks.json").build();
     }
 
     private static KeyPair generateRsaKey() {

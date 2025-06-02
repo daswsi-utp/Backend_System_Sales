@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .pathMatchers("/public/**", "/authorized", "/logout").permitAll()
                         .pathMatchers(HttpMethod.GET, "/api/users").permitAll()
                         .pathMatchers(HttpMethod.GET, "/api/users/{id}").hasAnyRole("ADMIN", "USER")
+                        .pathMatchers(HttpMethod.GET, "/api/users/email/{email}").hasAnyRole("ADMIN", "USER")
                         .pathMatchers("/api/users/**").hasRole("ADMIN")
                         .anyExchange().authenticated()
                 )
@@ -52,7 +53,7 @@ public class SecurityConfig {
     @Bean
     public ReactiveJwtDecoder reactiveJwtDecoder() {
         // Cambia la URL al JWKS que expone tu microservicio OAuth Authorization Server
-        return NimbusReactiveJwtDecoder.withJwkSetUri("http://127.0.0.1:9100/jwks").build();
+        return NimbusReactiveJwtDecoder.withJwkSetUri("http://127.0.0.1:9100/oauth2/jwks").build();
     }
 
     private Converter<Jwt, Mono<? extends AbstractAuthenticationToken>> customJwtAuthenticationConverter() {

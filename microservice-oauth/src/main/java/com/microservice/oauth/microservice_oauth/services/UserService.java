@@ -40,7 +40,6 @@ public class UserService implements ReactiveUserDetailsService {
                 .stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getName()))
                 .collect(Collectors.toList());
-
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
