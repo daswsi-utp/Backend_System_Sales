@@ -47,8 +47,8 @@ public class ProductController {
     }
 
     @GetMapping("/compoundSearch")
-    public List<Product> compoundSearch(@RequestParam(required = false) String name, @RequestParam(required = false) String categoryName, @RequestParam(required = false) String brandName){
-        return iServiceProduct.compoundSearch(name, categoryName, brandName);
+    public List<Product> compoundSearch(@RequestParam(required = false) String name, @RequestParam(required = false) String category, @RequestParam(required = false) String brand){
+        return iServiceProduct.compoundSearch(name, category, brand);
     }
 
     @GetMapping("/find/{name}")

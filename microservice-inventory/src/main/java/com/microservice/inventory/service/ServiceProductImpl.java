@@ -89,8 +89,8 @@ public class ServiceProductImpl implements IServiceProduct {
     }
 
     @Override
-    public List<Product> compoundSearch(String name, String categoryName, String brandName) {
-        return productRepository.compoundSearch(name, categoryName, brandName);
+    public List<Product> compoundSearch(String name, String category, String brand) {
+        return productRepository.compoundSearch(name, category, brand);
     }
 
     @Override

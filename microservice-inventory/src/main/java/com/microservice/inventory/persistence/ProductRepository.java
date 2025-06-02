@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository <Product, Long> {
             "WHERE (:name IS NULL OR LOWER(p.nameProduct) LIKE LOWER(CONCAT('%', :name, '%'))) " +
             "AND (:category IS NULL OR LOWER(p.category.nameCategory) = LOWER(:category)) " +
             "AND (:brand IS NULL OR LOWER(p.brand.nameBrand) = LOWER(:brand))")
-    List<Product> compoundSearch(@Param("name") String name, @Param("category")String categoryName, @Param("brand")String brandName);
+    List<Product> compoundSearch(@Param("name") String name, @Param("category")String category, @Param("brand")String brand);
 
 }
 
