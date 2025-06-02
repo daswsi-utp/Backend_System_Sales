@@ -26,4 +26,6 @@ public class Sales {
     private Registry registry;
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalesProduct> salesProductList;
+    @Column(name = "gross_income")
+    private double grossIncome;
 }

@@ -15,4 +15,5 @@ public class SaleRequestDTO {
     private double tax;
     private Long registryId;
     private List<ProductQuantityDTO> products;
+    private double grossIncome;
 }

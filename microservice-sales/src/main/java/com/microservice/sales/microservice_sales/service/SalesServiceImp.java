@@ -40,6 +40,7 @@ public class SalesServiceImp implements ISalesService{
                     .tax(sale.getTax())
                     .registry(registryDTO)
                     .relatedProducts(products)
+                    .grossIncome(sale.getGrossIncome())
                     .build();
             responseList.add(responseDTO);
         }
@@ -57,6 +58,7 @@ public class SalesServiceImp implements ISalesService{
                 .tax(sale.getTax())
                 .registry(registryDTO)
                 .relatedProducts(products)
+                .grossIncome(sale.getGrossIncome())
                 .build();
     }
 
@@ -65,6 +67,7 @@ public class SalesServiceImp implements ISalesService{
         Sales sale = new Sales();
         sale.setSum(saleRequestDTO.getSum());
         sale.setTax(saleRequestDTO.getTax());
+        sale.setGrossIncome(saleRequestDTO.getGrossIncome());
 
         Registry registry = new Registry();
         registry.setIdRegistry(saleRequestDTO.getRegistryId());

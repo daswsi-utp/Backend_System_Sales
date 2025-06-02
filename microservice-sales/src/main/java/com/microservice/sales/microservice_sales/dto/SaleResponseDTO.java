@@ -15,4 +15,5 @@ public class SaleResponseDTO {
     private double tax;
     private RegistryDTO registry;
     private List<SalesProductDTO> relatedProducts;
+    private double grossIncome;
 }
