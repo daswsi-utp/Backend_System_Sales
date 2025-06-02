@@ -17,7 +17,7 @@ public interface IServiceProduct {
     Product updateProduct(Long id, Product product);
     boolean deleteProduct(Long id);
     void decreaseStock(List<ProductStockUpdateDTO> stockUpdates);
-
+    List<Product> compoundSearch(String name, String categoryName, String brandName);
     //jack
     void increaseStock(List<ProductStockUpdateDTO> stockUpdates);
 

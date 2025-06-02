@@ -87,6 +87,12 @@ public class ServiceProductImpl implements IServiceProduct {
             productRepository.save(product);
         }
     }
+
+    @Override
+    public List<Product> compoundSearch(String name, String categoryName, String brandName) {
+        return productRepository.compoundSearch(name, categoryName, brandName);
+    }
+
     @Override
     public void increaseStock(List<ProductStockUpdateDTO> stockUpdates) {
         for (ProductStockUpdateDTO update : stockUpdates) {

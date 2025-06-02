@@ -46,7 +46,12 @@ public class ProductController {
         return iServiceProduct.deleteProduct(id);
     }
 
-    @GetMapping("/search/{name}")
+    @GetMapping("/compoundSearch")
+    public List<Product> compoundSearch(@RequestParam(required = false) String name, @RequestParam(required = false) String categoryName, @RequestParam(required = false) String brandName){
+        return iServiceProduct.compoundSearch(name, categoryName, brandName);
+    }
+
+    @GetMapping("/find/{name}")
     public List<Product> searchProductByName(@PathVariable String name){
         return iServiceProduct.searchProductByName(name);
 
